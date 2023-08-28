@@ -3,11 +3,15 @@
     <el-space direction="vertical" :size="20" style="width: 100%">
       <h1>安全工具检测</h1>
       <h4>1. 上传合约</h4>
-      <el-input v-model="contract_url" autocomplete="off" style="margin-right:10px;"></el-input>
+      <el-input
+        v-model="contract_url"
+        autocomplete="off"
+        style="margin-right: 10px"
+      ></el-input>
       <el-upload
         :file-list="fileList"
         class="upload-demo"
-        :action="$http.server_host + '/scAnalysis/contracts/file/upload'"
+        :action="$http.server_host + '/toolFunc/contracts/upload'"
         :headers="{ Authorization: 'Bearer ' + $auth.token }"
         multiple
         :on-preview="handlePreview"
@@ -18,8 +22,9 @@
         :on-success="handleSuccess"
         :on-error="handleError"
       >
-        <el-button type="primary">Click to upload</el-button>
-      
+        <el-button type="primary"
+          >上传合约<el-icon class="el-icon--right"><Upload /></el-icon
+        ></el-button>
         <template #tip>
           <div class="el-upload__tip">
             contract files with a size less than 500KB.
@@ -28,48 +33,126 @@
       </el-upload>
       <div class="file-list-container">
         <div class="file" v-for="file in paginatedFiles" :key="file.name">
-          {{ file.name }}
+          {{ file }}
         </div>
       </div>
 
       <el-pagination
         :page-size="5"
         layout="prev, pager, next"
-        :total="fileList.length"
+        :total="contract_list.length"
         @current-change="handlePageChange"
       ></el-pagination>
     </el-space>
-    <h4>2. 选择合约所用语言</h4>
-    <h4>3. 选择漏洞检测的工具</h4>
-    <h4>4. 预计检测所需的时间</h4>
-    <h4>5. 输入超时时间</h4>
-    <h4>6. 漏洞检测结果</h4>
+    <h4>2. 选择合约所用工具</h4>
+    <div class="select-button-container">
+      <el-select v-model="selectedOption" :options="options" placeholder="工具">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+      <el-select v-model="contract_name" :options="options" placeholder="合约">
+        <el-option
+          v-for="item in contract_list"
+          :key="item"
+          :label="item"
+          :value="item"
+        />
+      </el-select>
+      <el-button type="success" @click="handleButtonClick">开始检测<el-icon><Share /></el-icon></el-button
+      >
+    </div>
+  </div>
+  <div class="description-container">
+    <el-descriptions
+      class="margin-top"
+      title="检测结果"
+      :column="3"
+      :size="size"
+      border
+    >
+      <el-descriptions-item label="工具名称" width="10%">
+        {{ selectedOption }}
+      </el-descriptions-item>
+      <el-descriptions-item label="是否成功" width="10%">
+        {{ message }}</el-descriptions-item
+      >
+      <el-descriptions-item label="所用时间" width="10%">
+        {{ execution_time }}
+      </el-descriptions-item>
+    </el-descriptions>
+    <result-component :detect_res="detect_res"></result-component>
   </div>
 </template>
   
 <script>
 import { ElMessage, ElMessageBox } from "element-plus";
+import { Upload, Share } from "@element-plus/icons";
+import ResultComponent from "./ResultComponent.vue";
 
 export default {
   name: "AppSCTool",
+  components: {
+    Upload,
+    Share,
+    ResultComponent,
+  },
   data() {
     return {
       fileList: [],
       currentPage: 1,
-      uploadError: '',
-      contract_url: ""
+      uploadError: "",
+      contract_url: "",
+      selectedOption: null, // Add this li
+      options: [
+        {
+          value: "mythril",
+          label: "Mythril",
+        },
+        {
+          value: "oyente",
+          label: "Oyente",
+        },
+        {
+          value: "conkas",
+          label: "Conkas",
+        },
+        {
+          value: "slither",
+          label: "Slither",
+        },
+        {
+          value: "solhint",
+          label: "solhint",
+        },
+      ],
+      message: "",
+      detect_res: "",
+      contract_name: "",
+      contracts_files: [],
+      contract_list: [],
+      execution_time: "",
     };
   },
   computed: {
     paginatedFiles() {
       const start = (this.currentPage - 1) * 5;
       const end = this.currentPage * 5;
-      return this.fileList.slice(start, end);
+      return this.contract_list.slice(start, end);
     },
+  },
+  mounted() {
+    this.fetchContractList(); // Call the method when component is mounted
   },
   methods: {
     handleRemove(file) {
-      console.log(file);
+      const index = this.uploadedFiles.indexOf(file);
+      if (index !== -1) {
+        this.uploadedFiles.splice(index, 1);
+      }
     },
 
     handlePreview(uploadFile) {
@@ -94,9 +177,7 @@ export default {
       if (response["code"] == 200) {
         var file_name = response["data"]["contract_url"];
         this.contract_url = "/media/contracts/" + file_name;
-        console.log(file_name);
-        console.log(this.contract_url);
-        this.fileList.push({ name: file.name });
+        this.uploadedFiles.push({ name: file.name });
       } else {
         // Don't add to fileList
         ElMessage.error(response["message"]);
@@ -107,6 +188,36 @@ export default {
     },
     handlePageChange(newPage) {
       this.currentPage = newPage;
+    },
+    handleButtonClick() {
+      if (this.selectedOption) {
+        console.log("You selected:", this.selectedOption);
+        this.$http
+          .getToolAnalysis(this.selectedOption, this.contract_name)
+          .then((res) => {
+            this.message = res["message"];
+            if ("logs" in res) {
+              this.detect_res = res["logs"];
+            } else if ("output" in res) {
+              this.detect_res = res["output"];
+            }
+            this.execution_time = res["time"];
+          });
+        // Perform your action here
+      } else {
+        console.log("No option selected.");
+      }
+    },
+    fetchContractList() {
+      this.$http
+        .getContractList()
+        .then((response) => {
+          this.contracts_files = response.files; // Extract the 'files' array from the response
+          this.contract_list = this.contracts_files.map((file) => file.name);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch contract list:", error);
+        });
     },
   },
 };
@@ -121,5 +232,15 @@ export default {
   width: 300px;
   height: auto;
   overflow: auto;
+}
+
+.description-container {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+::v-deep .el-descriptions-item-content {
+  white-space: nowrap; /* Keep text on a single line */
+  overflow-x: auto; /* Add scroll bar if necessary */
 }
 </style>

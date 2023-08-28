@@ -182,9 +182,6 @@ export default {
             let code = res['code'];
             if(code === 200){
               let banner = res['data'];
-              // this.banners.push(banner);
-              // 需要使用splice才能完成替换操作，不能直接通过下标修改元素
-              // 直接通过下标修改元素，页面上不会自动改变
               this.banners.splice(this.editingIndex, 1, banner);
               ElMessage.success("轮播图编辑成功！");
               this.bannerDialogVisible = false;

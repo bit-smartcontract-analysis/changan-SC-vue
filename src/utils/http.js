@@ -118,6 +118,16 @@ class Http {
 		return this.http.get(url)
 	}
 
+	getContractList(){
+		const url = "/toolFunc/contracts/list"
+		return this.http.get(url)
+	}
+
+	getToolAnalysis(toolName, contract){
+		const url = "/toolFunc/run/"+ toolName
+		return this._post(url, {"contract": contract})
+	}
+
 }
 
 export default new Http()

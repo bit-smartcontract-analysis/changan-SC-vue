@@ -62,8 +62,9 @@
           :value="item"
         />
       </el-select>
-      <el-button type="success" @click="handleButtonClick">开始检测<el-icon><Share /></el-icon></el-button
-      >
+      <el-button type="success" @click="handleButtonClick"
+        >开始检测<el-icon><Share /></el-icon
+      ></el-button>
     </div>
   </div>
   <div class="description-container">
@@ -149,9 +150,9 @@ export default {
   },
   methods: {
     handleRemove(file) {
-      const index = this.uploadedFiles.indexOf(file);
+      const index = this.fileList.indexOf(file);
       if (index !== -1) {
-        this.uploadedFiles.splice(index, 1);
+        this.fileList.splice(index, 1);
       }
     },
 
@@ -177,7 +178,7 @@ export default {
       if (response["code"] == 200) {
         var file_name = response["data"]["contract_url"];
         this.contract_url = "/media/contracts/" + file_name;
-        this.uploadedFiles.push({ name: file.name });
+        this.fileList.push({ name: file.name });
       } else {
         // Don't add to fileList
         ElMessage.error(response["message"]);
@@ -217,6 +218,24 @@ export default {
         })
         .catch((error) => {
           console.error("Failed to fetch contract list:", error);
+        });
+    },
+    deleteContract(contract) {
+      console.log("Delete button clicked for contract:", contract);
+      this.$http
+        .getContractDelete(contract)
+        .then((response) => {
+          // Remove the deleted file from paginatedFiles
+          const index = this.paginatedFiles.indexOf(contract);
+          console.log(response);
+          if (index !== -1) {
+            this.paginatedFiles.splice(index, 1);
+          }
+          // Handle any additional success logic here
+        })
+        .catch((error) => {
+          // Handle the error here
+          console.error("Failed to delete contract:", error);
         });
     },
   },

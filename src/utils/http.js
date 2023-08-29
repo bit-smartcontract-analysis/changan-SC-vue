@@ -123,6 +123,11 @@ class Http {
 		return this.http.get(url)
 	}
 
+	getContractDelete(contract){
+		const url = "/toolFunc/contracts/delete"
+		return this._post(url, {"contract": contract})
+	}
+
 	getToolAnalysis(toolName, contract){
 		const url = "/toolFunc/run/"+ toolName
 		return this._post(url, {"contract": contract})

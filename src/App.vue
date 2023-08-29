@@ -61,6 +61,12 @@
                     <span>合约分析</span>
                   </template>
                 </el-menu-item>
+                <el-menu-item index="7" :route="{name: 'contractManage'}">
+                  <template #title>
+                    <el-icon><User /></el-icon>
+                    <span>合约管理</span>
+                  </template>
+                </el-menu-item>
               </el-menu>
             </el-col>
           </el-row>

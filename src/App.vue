@@ -27,6 +27,13 @@
                   </template>
                 </el-menu-item>
 
+                <el-menu-item index="0" :route="{name: 'search'}">
+                  <template #title>
+                    <el-icon><Search /></el-icon>
+                    <span>详情介绍</span>
+                  </template>
+                </el-menu-item>
+
                 <!-- <el-menu-item index="2" :route="{name: 'banner'}" v-if="has_permission('banner')"> -->
                 <el-menu-item index="2" :route="{name: 'banner'}">
                   <template #title>
@@ -83,7 +90,7 @@
 </template>
 
 <script>
-import {House, PictureRounded, Postcard, Comment, User} from "@element-plus/icons"
+import {House, PictureRounded, Postcard, Comment, User,Search} from "@element-plus/icons"
 export default {
   name: "App",
   components:{
@@ -91,7 +98,8 @@ export default {
     PictureRounded,
     Postcard,
     Comment,
-    User
+    User,
+    Search
   },
   data(){
     return {
@@ -118,12 +126,14 @@ export default {
   },
   mounted(){
     if(!this.$auth.is_staff){
-      window.location = this.$http.server_host;
+      //window.location = this.$http.server_host;
     }
   },
   methods: {
     has_permission(permissions){
-      return this.$auth.user.permissions.indexOf(permissions) >=0
+      console.log(permissions)
+      console.log(this.$auth.user)
+      return false
     }
   },
 };

@@ -2,7 +2,7 @@
   <div>
     <el-space direction="vertical" :size="20" style="width: 100%">
       <h1>安全工具检测</h1>
-      <h4>1. 上传合约</h4>
+      <h4>step1 上传合约</h4>
       <el-input
         v-model="contract_url"
         autocomplete="off"
@@ -22,14 +22,17 @@
         :on-success="handleSuccess"
         :on-error="handleError"
       >
-        <el-button type="primary"
+      
+        <el-button type="primary" 
           >上传合约<el-icon class="el-icon--right"><Upload /></el-icon
         ></el-button>
+       
         <template #tip>
           <div class="el-upload__tip">
             contract files with a size less than 500KB.
           </div>
         </template>
+      
       </el-upload>
       <div class="file-list-container">
         <div class="file" v-for="file in paginatedFiles" :key="file.name">
@@ -44,7 +47,12 @@
         @current-change="handlePageChange"
       ></el-pagination>
     </el-space>
-    <h4>2. 选择合约所用工具</h4>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <h4>step2 选择合约所用工具</h4>
+    <br>
     <div class="select-button-container">
       <el-select v-model="selectedOption" :options="options" placeholder="工具">
         <el-option
@@ -67,6 +75,11 @@
       ></el-button>
     </div>
   </div>
+  <br>
+  <br>
+  <hr>
+  <br>
+  <br>
   <div class="description-container">
     <el-descriptions
       class="margin-top"
@@ -262,4 +275,44 @@ export default {
   white-space: nowrap; /* Keep text on a single line */
   overflow-x: auto; /* Add scroll bar if necessary */
 }
+h4{
+  text-align:center
+}
+h1
+{
+  text-align:center
+}
+hr {
+    display: block;
+    height: 0.5px;
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-top: solid 0.5px #f0f0f0;
+}
+el-descriptions
+{
+  text-align:center
+}
+.select-button-container
+{
+  text-align:center
+}
+
+.load{
+  text-align:center
+}
+.el-upload__tip
+{
+  text-align:center
+}
+.file-list-container
+{
+  text-align:center
+}
+.description-container
+{
+  text-align:center
+}
+
 </style>

@@ -6,6 +6,8 @@ import AppPost from "@/pages/Post.vue";
 import AppUser from "@/pages/User.vue";
 import AppSCTool from "@/pages/SCTool.vue";
 import AppContractManage from "@/pages/ContractManage.vue";
+import AppSearch from "@/pages/MySearch.vue";
+
 
 const routes = [{
     path: "/", component: AppHome, name: "home"
@@ -21,6 +23,8 @@ const routes = [{
     path: "/scTool", component: AppSCTool, name: "scTool"
 },{
     path: "/contractManage", component: AppContractManage, name: "contractManage"
+},{
+    path: "/search", component: AppSearch, name: "search"
 }]
 
 // 3. 创建路由实例并传递 `routes` 配置

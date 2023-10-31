@@ -22,10 +22,11 @@
         :on-success="handleSuccess"
         :on-error="handleError"
       >
-      
-        <el-button type="primary" 
+      <div class="center">
+        <el-button class="center" type="primary" 
           >上传合约<el-icon class="el-icon--right"><Upload /></el-icon
         ></el-button>
+      </div>
        
         <template #tip>
           <div class="el-upload__tip">
@@ -86,6 +87,8 @@
       title="检测结果"
       :column="3"
       :size="size"
+      :contentStyle="rowCenter" 
+      :labelStyle="rowCenter"
       border
     >
       <el-descriptions-item label="工具名称" width="10%">
@@ -151,6 +154,9 @@ export default {
       execution_time: "",
     };
   },
+  rowCenter:{
+                    "text-align":"center"
+        },
   computed: {
     paginatedFiles() {
       const start = (this.currentPage - 1) * 5;
@@ -275,6 +281,17 @@ export default {
   white-space: nowrap; /* Keep text on a single line */
   overflow-x: auto; /* Add scroll bar if necessary */
 }
+
+::v-deep .el-descriptions-title
+{
+  text-align:center;
+}
+.center
+{
+  text-align:center;
+  margin-left:290px;
+}
+
 h4{
   text-align:center
 }
@@ -314,5 +331,10 @@ el-descriptions
 {
   text-align:center
 }
+.el-descriptions_title
+{
+  text-align:center;
+}
+
 
 </style>

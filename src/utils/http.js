@@ -133,6 +133,10 @@ class Http {
 		return this._post(url, {"contract": contract})
 	}
 
+	getLogsList(){
+		const url = "/toolFunc/logs/list"
+		return this.http.get(url)
+	}
 }
 
 export default new Http()

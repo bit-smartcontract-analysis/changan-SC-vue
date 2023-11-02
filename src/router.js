@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import AppHome from "@/pages/Home.vue";
 import AppBanner from "@/pages/myBanner.vue";
 import AppComment from "@/pages/Comment.vue";
 import AppPost from "@/pages/Post.vue";
@@ -20,8 +19,6 @@ const routes = [{
     path: "/user", component: AppUser, name: "user"
 },{
     path: "/scTool", component: AppSCTool, name: "scTool"
-},{
-    path: "/contractManage", component: AppContractManage, name: "contractManage"
 },
 {
     path: "/record", component: Apprecord, name: "record"

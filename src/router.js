@@ -1,16 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import AppHome from "@/pages/Home.vue";
-import AppBanner from "@/pages/Banner.vue";
+import AppBanner from "@/pages/myBanner.vue";
 import AppComment from "@/pages/Comment.vue";
 import AppPost from "@/pages/Post.vue";
 import AppUser from "@/pages/User.vue";
 import AppSCTool from "@/pages/SCTool.vue";
-import AppContractManage from "@/pages/ContractManage.vue";
 import AppSearch from "@/pages/MySearch.vue";
-
+import Apprecord from "@/pages/myRecord.vue"
 
 const routes = [{
-    path: "/", component: AppHome, name: "home"
+    path: "/", component: AppSearch, name: "search"
 },{
     path: "/banner", component: AppBanner, name: "banner"
 },{
@@ -23,8 +22,9 @@ const routes = [{
     path: "/scTool", component: AppSCTool, name: "scTool"
 },{
     path: "/contractManage", component: AppContractManage, name: "contractManage"
-},{
-    path: "/search", component: AppSearch, name: "search"
+},
+{
+    path: "/record", component: Apprecord, name: "record"
 }]
 
 // 3. 创建路由实例并传递 `routes` 配置

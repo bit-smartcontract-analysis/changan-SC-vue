@@ -20,12 +20,7 @@
                 text-color="#ddd"
                 :router="true"
               >
-                <el-menu-item index="1" :route="{name: 'home'}">
-                  <template #title>
-                    <el-icon><House /></el-icon>
-                    <span>首页</span>
-                  </template>
-                </el-menu-item>
+                
 
                 <el-menu-item index="0" :route="{name: 'search'}">
                   <template #title>
@@ -34,11 +29,11 @@
                   </template>
                 </el-menu-item>
 
-                <!-- <el-menu-item index="2" :route="{name: 'banner'}" v-if="has_permission('banner')"> -->
+                <!-- <el-menu-item index="2" :route="{name: 'banner'}" v-if="has_permission('banner ')"> -->
                 <el-menu-item index="2" :route="{name: 'banner'}">
                   <template #title>
                     <el-icon><PictureRounded /></el-icon>
-                    <span>轮播图</span>
+                    <span>工具介绍</span>
                   </template>
                 </el-menu-item>
 
@@ -73,6 +68,14 @@
                     <el-icon><User /></el-icon>
                     <span>合约管理</span>
                   </template>
+                  
+                </el-menu-item>
+                <el-menu-item index="8" :route="{name: 'record'}">
+                  <template #title>
+                    <el-icon><User /></el-icon>
+                    <span>日志管理</span>
+                  </template>
+                  
                 </el-menu-item>
               </el-menu>
             </el-col>
@@ -90,11 +93,10 @@
 </template>
 
 <script>
-import {House, PictureRounded, Postcard, Comment, User,Search} from "@element-plus/icons"
+import { PictureRounded, Postcard, Comment, User,Search} from "@element-plus/icons"
 export default {
   name: "App",
   components:{
-    House,
     PictureRounded,
     Postcard,
     Comment,

@@ -33,20 +33,22 @@
             contract files with a size less than 500KB.
           </div>
         </template>
-      
+     
       </el-upload>
       <div class="file-list-container">
         <div class="file" v-for="file in paginatedFiles" :key="file.name">
           {{ file }}
         </div>
-      </div>
 
+      </div>
+      
       <el-pagination
         :page-size="5"
         layout="prev, pager, next"
         :total="contract_list.length"
         @current-change="handlePageChange"
       ></el-pagination>
+    
     </el-space>
     <br>
     <hr>
@@ -270,8 +272,13 @@ export default {
   width: 300px;
   height: auto;
   overflow: auto;
+  margin-left:500px;
+  text-align: left;
 }
-
+.file
+{
+  text-align:left;
+}
 .description-container {
   max-width: 100%;
   overflow-x: auto;

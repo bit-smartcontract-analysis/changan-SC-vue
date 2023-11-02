@@ -147,6 +147,34 @@ export default {
           value: "solhint",
           label: "solhint",
         },
+        {
+          value: "confuzzius",
+          label: "confuzzius",
+        },
+        {
+          value: "security",
+          label: "security",
+        },
+        {
+          value: "osiris",
+          label: "osiris",
+        },
+        {
+          value: "honeybadger",
+          label: "honeybadger",
+        },
+        {
+          value: "wana_cpp",
+          label: "wana_cpp",
+        },
+        {
+          value: "wana_rust",
+          label: "wana_rust",
+        },
+        {
+          value: "evulhunter",
+          label: "evulhunter",
+        },
       ],
       message: "",
       detect_res: "",

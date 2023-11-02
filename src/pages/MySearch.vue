@@ -20,7 +20,7 @@
         <li>....成果</li>
     </ul>
         <br>
-        <div class="box_a"><h4><a href="#">智能合约平台</a></h4><em>|</em><span>长安链</span></div>
+        <div class="box_a"><h4><a href="https://chainmaker.org.cn/home">长安链官网</a></h4><em>|</em><span>合约检测</span></div>
    </div>
     </div>
     </div>

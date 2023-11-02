@@ -1,13 +1,18 @@
+
 <template>
-  <el-table :data="tableData" stripe>
-    <el-table-column prop="name" label="工具名称" width="150">
-    </el-table-column>
-    <el-table-column prop="language" label="适用语言" width="120">
-    </el-table-column>
-    <el-table-column prop="bug" label="检测漏洞" width="120"> </el-table-column>
-    <el-table-column prop="intro" label="详情介绍" width="200">
-    </el-table-column>
-  </el-table>
+  <div>
+    <h2 class="table-title">工具数据分析</h2>
+    <el-table :data="tableData" border stripe row-style="rowStyleMethod">
+      <el-table-column prop="name" label="工具名称" width="150" align="left">
+      </el-table-column>
+      <el-table-column prop="language" label="合约语言" width="120" align="left">
+      </el-table-column>
+      <el-table-column prop="bug" label="检测漏洞" width="120" align="left">
+      </el-table-column>
+      <el-table-column prop="intro" label="详情介绍" width="400" align="left">
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
@@ -96,4 +101,14 @@ export default {
 </script>
 
 <style scoped>
+.table-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.el-table .el-table__row:first-child {
+  background-color: #f0dbdb;  /* Adjust color as needed */
+}
 </style>

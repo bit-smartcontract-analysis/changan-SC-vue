@@ -7,7 +7,7 @@
       </div>
       <div class="file-actions">
         <el-button type="success" circle @click="checkContract(file.name)">
-          <el-icon><edit /></el-icon>
+          <el-icon><search /></el-icon>
         </el-button>
         <el-button type="danger" circle @click="deleteContract(file.name)"
           ><el-icon><delete /></el-icon>
@@ -19,12 +19,12 @@
 
 
 <script>
-import { Delete,  Edit} from "@element-plus/icons";
+import { Delete, Search} from "@element-plus/icons";
 export default {
   name: "AppContractManage",
   components: {
     Delete,
-    Edit
+    Search
   },
   data() {
     return {

@@ -3,7 +3,7 @@
   <div>
     <h2 class="table-title">工具数据分析</h2>
     <el-table :data="tableData" border stripe row-style="rowStyleMethod">
-      <el-table-column prop="name" label="工具名称" width="150" align="left">
+      <el-table-column prop="name" label="工具名称" width="160" align="left">
       </el-table-column>
       <el-table-column prop="language" label="合约语言" width="120" align="left">
       </el-table-column>
@@ -93,6 +93,12 @@ export default {
           language: "Rust",
           bug: "Fake EOS Transfer漏洞",
           intro: "EVulHunter是基于Octopus项目的EOS智能合约二进制级漏洞检测器",
+        },
+        {
+          name: "chaincode-analyzer",
+          language: "Golang",
+          bug: "Random value, Timestamp, Calling external API, Pointer",
+          intro: "chaincode-analyzer是专门用于Fabric chaincode合约的漏洞检测。经过测试，也可以测试长安链go合约",
         },
       ],
     };

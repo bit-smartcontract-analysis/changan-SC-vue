@@ -2,7 +2,7 @@
   <div class="frame">
     <el-container class="frame-container">
       <el-header class="header">
-        <a href="/" class="brand"><strong>长安链</strong>管理系统</a>
+        <a href="/" class="brand"><strong>长安链</strong>合约检测平台</a>
         <div class="header-content">
           <!-- <div class="greet">欢迎，{{$auth.user.username}}[{{$auth.user.role.name}}]</div> -->
           <div class="greet">欢迎，周杰伦</div>

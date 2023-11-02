@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         fetchContractList() {
-            this.$http.getContractList().then((response) => {
+            this.$http.getLogsList().then((response) => {
                 this.contract_list = response.files; // Extract the 'files' array from the response
             }).catch((error) => {
                 console.error("Failed to fetch contract list:", error);

@@ -6,6 +6,7 @@ import AppUser from "@/pages/User.vue";
 import AppSCTool from "@/pages/SCTool.vue";
 import AppSearch from "@/pages/MySearch.vue";
 import Apprecord from "@/pages/myRecord.vue"
+import AppContractManage from "@/pages/ContractManage.vue"
 
 const routes = [{
     path: "/", component: AppSearch, name: "search"
@@ -19,6 +20,8 @@ const routes = [{
     path: "/user", component: AppUser, name: "user"
 },{
     path: "/scTool", component: AppSCTool, name: "scTool"
+},{
+    path: "/contractManage", component: AppContractManage, name: "contractManage"
 },
 {
     path: "/record", component: Apprecord, name: "record"

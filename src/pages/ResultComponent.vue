@@ -1,3 +1,9 @@
+<style>
+div {
+  white-space: pre-line;
+}
+</style>
+
 <template>
     <div class="result-container">
       <h4>检测日志:</h4>

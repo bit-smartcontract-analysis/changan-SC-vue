@@ -7,6 +7,7 @@ import AppSCTool from "@/pages/SCTool.vue";
 import AppSearch from "@/pages/MySearch.vue";
 import Apprecord from "@/pages/myRecord.vue"
 import AppContractManage from "@/pages/ContractManage.vue"
+import AppLanguage from "@/pages/myLanguage.vue";
 
 const routes = [{
     path: "/", component: AppSearch, name: "search"
@@ -25,6 +26,9 @@ const routes = [{
 },
 {
     path: "/record", component: Apprecord, name: "record"
+},
+{
+path: "/language", component: AppLanguage, name: "language"
 }]
 
 // 3. 创建路由实例并传递 `routes` 配置

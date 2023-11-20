@@ -29,6 +29,14 @@
                   </template>
                 </el-menu-item>
 
+                <!-- <el-menu-item index="9" :route="{name: 'language'}" v-if="has_permission('language ')"> -->
+                <el-menu-item index="9" :route="{name: 'language'}">
+                  <template #title>
+                    <el-icon><PictureRounded /></el-icon>
+                    <span>合约语言介绍</span>
+                  </template>
+                </el-menu-item>
+
                 <!-- <el-menu-item index="2" :route="{name: 'banner'}" v-if="has_permission('banner ')"> -->
                 <el-menu-item index="2" :route="{name: 'banner'}">
                   <template #title>
@@ -120,7 +128,10 @@ export default {
         index = "4"
       }else if(path.indexOf("user") >= 0){
         index = "5"
-      }else{
+      }else if(path.indexOf("language") >= 0){
+        index = "9"
+      }
+      else{
         index = "1"
       }
       return index;

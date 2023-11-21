@@ -11,10 +11,11 @@
 
 <script>
 import ToggleButton  from "@vueform/toggle";
+
 export default {
   name: "AppIde",
   components: {
-    ToggleButton ,
+    ToggleButton,
   },
   data: () => ({
     remixSrc: "http://" + window.location.hostname + ":3000/",

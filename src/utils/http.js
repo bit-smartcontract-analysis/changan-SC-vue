@@ -137,6 +137,18 @@ class Http {
 		const url = "/toolFunc/logs/list"
 		return this.http.get(url)
 	}
+	getRemixIDEStart(){
+		const url = "/contractMg/startRemix"
+		return this.http.get(url)
+	}
+	getRemixIDEStop(){
+		const url = "/contractMg/stopRemoveRemix"
+		return this.http.get(url)
+	}
+	getRemixIDEState(){
+		const url = "/contractMg/checkRemixRunning"
+		return this.http.get(url)
+	}
 }
 
 export default new Http()

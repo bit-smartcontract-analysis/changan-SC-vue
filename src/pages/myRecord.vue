@@ -21,7 +21,7 @@
 <script>
 import { Delete, Search} from "@element-plus/icons";
 export default {
-  name: "AppContractManage",
+  name: "AppRecord",
   components: {
     Delete,
     Search

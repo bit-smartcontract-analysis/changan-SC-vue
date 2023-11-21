@@ -20,9 +20,7 @@
                 text-color="#ddd"
                 :router="true"
               >
-                
-
-                <el-menu-item index="0" :route="{name: 'search'}">
+                <el-menu-item index="0" :route="{ name: 'search' }">
                   <template #title>
                     <el-icon><Search /></el-icon>
                     <span>详情介绍</span>
@@ -30,7 +28,7 @@
                 </el-menu-item>
 
                 <!-- <el-menu-item index="9" :route="{name: 'language'}" v-if="has_permission('language ')"> -->
-                <el-menu-item index="9" :route="{name: 'language'}">
+                <el-menu-item index="1" :route="{ name: 'language' }">
                   <template #title>
                     <el-icon><PictureRounded /></el-icon>
                     <span>合约语言介绍</span>
@@ -38,52 +36,68 @@
                 </el-menu-item>
 
                 <!-- <el-menu-item index="2" :route="{name: 'banner'}" v-if="has_permission('banner ')"> -->
-                <el-menu-item index="2" :route="{name: 'banner'}">
+                <el-menu-item index="2" :route="{ name: 'banner' }">
                   <template #title>
                     <el-icon><PictureRounded /></el-icon>
                     <span>工具介绍</span>
                   </template>
                 </el-menu-item>
 
-                <el-menu-item index="3" :route="{name: 'post'}" v-if="has_permission('post')">
+                <el-menu-item
+                  index="3"
+                  :route="{ name: 'post' }"
+                  v-if="has_permission('post')"
+                >
                   <template #title>
                     <el-icon><Postcard /></el-icon>
                     <span>帖子管理</span>
                   </template>
                 </el-menu-item>
 
-                <el-menu-item index="4" :route="{name: 'comment'}" v-if="has_permission('comment')">
+                <el-menu-item
+                  index="4"
+                  :route="{ name: 'comment' }"
+                  v-if="has_permission('comment')"
+                >
                   <template #title>
                     <el-icon><Comment /></el-icon>
                     <span>评论管理</span>
                   </template>
                 </el-menu-item>
 
-                <el-menu-item index="5" :route="{name: 'user'}"  v-if="has_permission('user')">
+                <el-menu-item
+                  index="5"
+                  :route="{ name: 'user' }"
+                  v-if="has_permission('user')"
+                >
                   <template #title>
                     <el-icon><User /></el-icon>
                     <span>用户管理</span>
                   </template>
                 </el-menu-item>
-                <el-menu-item index="6" :route="{name: 'scTool'}">
+                <el-menu-item index="6" :route="{ name: 'scTool' }">
                   <template #title>
                     <el-icon><User /></el-icon>
                     <span>合约分析</span>
                   </template>
                 </el-menu-item>
-                <el-menu-item index="7" :route="{name: 'contractManage'}">
+                <el-menu-item index="7" :route="{ name: 'contractManage' }">
                   <template #title>
                     <el-icon><User /></el-icon>
                     <span>合约管理</span>
                   </template>
-                  
                 </el-menu-item>
-                <el-menu-item index="8" :route="{name: 'record'}">
+                <el-menu-item index="8" :route="{ name: 'record' }">
                   <template #title>
                     <el-icon><User /></el-icon>
                     <span>日志管理</span>
                   </template>
-                  
+                </el-menu-item>
+                <el-menu-item index="9" :route="{ name: 'ide' }">
+                  <template #title>
+                    <el-icon><User /></el-icon>
+                    <span>IDE</span>
+                  </template>
                 </el-menu-item>
               </el-menu>
             </el-col>
@@ -101,53 +115,57 @@
 </template>
 
 <script>
-import { PictureRounded, Postcard, Comment, User,Search} from "@element-plus/icons"
+import {
+  PictureRounded,
+  Postcard,
+  Comment,
+  User,
+  Search,
+} from "@element-plus/icons";
 export default {
   name: "App",
-  components:{
+  components: {
     PictureRounded,
     Postcard,
     Comment,
     User,
-    Search
+    Search,
   },
-  data(){
-    return {
-    }
+  data() {
+    return {};
   },
   computed: {
-    defaultIndex(){
+    defaultIndex() {
       // http://127.0.0.1:8080/#/post
       const path = this.$route.path;
       let index = "1";
-      if(path.indexOf("banner") >= 0){
-        index = "2"
-      }else if(path.indexOf('post') >= 0){
-        index = "3"
-      }else if(path.indexOf("comment") >= 0){
-        index = "4"
-      }else if(path.indexOf("user") >= 0){
-        index = "5"
-      }else if(path.indexOf("language") >= 0){
-        index = "9"
-      }
-      else{
-        index = "1"
+      if (path.indexOf("banner") >= 0) {
+        index = "2";
+      } else if (path.indexOf("post") >= 0) {
+        index = "3";
+      } else if (path.indexOf("comment") >= 0) {
+        index = "4";
+      } else if (path.indexOf("user") >= 0) {
+        index = "5";
+      } else if (path.indexOf("language") >= 0) {
+        index = "9";
+      } else {
+        index = "1";
       }
       return index;
-    }
+    },
   },
-  mounted(){
-    if(!this.$auth.is_staff){
+  mounted() {
+    if (!this.$auth.is_staff) {
       //window.location = this.$http.server_host;
     }
   },
   methods: {
-    has_permission(permissions){
-      console.log(permissions)
-      console.log(this.$auth.user)
-      return false
-    }
+    has_permission(permissions) {
+      console.log(permissions);
+      console.log(this.$auth.user);
+      return false;
+    },
   },
 };
 </script>
@@ -182,8 +200,8 @@ export default {
 }
 
 .header-content .signout {
-    cursor: pointer;
-  }
+  cursor: pointer;
+}
 
 .aside {
   background-color: #545c64;
@@ -199,7 +217,7 @@ export default {
 </style>
 
 <style scoped>
-.el-menu{
+.el-menu {
   border-right: none;
 }
 </style>

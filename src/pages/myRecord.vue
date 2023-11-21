@@ -1,9 +1,22 @@
 <template>
   <div>
+    <select v-model="selectedLanguage">
+      <option value="sol">Solidity</option>
+      <option value="javascript">JavaScript</option>
+      <option value="python">Python</option>
+      <option value="html">HTML</option>
+      <!-- Add more languages as needed -->
+    </select>
+    <select v-model="themeColor">
+      <option value="vs-dark">Dark</option>
+      <option value="vs-light">Light</option>
+      <option value="hc-black">Black</option>
+    </select>
+    <div style="margin: 10px 0"></div>
     <MonacoEditor
     class="editor"
-    language="sol"
-    theme="vs-dark"
+    :language="selectedLanguage"
+    :theme="themeColor"
     :options="editorOptions"
     v-model="code"
     @editorDidMount="editorDidMount"
@@ -49,6 +62,8 @@ export default {
     return {
       contract_list: [],
       code: '//write your code here',
+      selectedLanguage: 'sol',
+      themeColor: 'vs-dark',
     };
   },
   mounted() {

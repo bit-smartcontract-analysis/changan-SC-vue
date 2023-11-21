@@ -6,8 +6,8 @@
         <span class="file-size">{{ file.size }} bytes</span>
       </div>
       <div class="file-actions">
-        <el-button type="primary" circle @click="editContract(file.name)"
-          ><el-icon><edit /></el-icon>
+        <el-button type="success" circle @click="checkContract(file.name)">
+          <el-icon><search /></el-icon>
         </el-button>
         <el-button type="danger" circle @click="deleteContract(file.name)"
           ><el-icon><delete /></el-icon>
@@ -15,16 +15,16 @@
       </div>
     </div>
   </div>
-
 </template>
 
+
 <script>
-import { Delete, Edit } from "@element-plus/icons";
+import { Delete, Search} from "@element-plus/icons";
 export default {
   name: "AppContractManage",
   components: {
     Delete,
-    Edit,
+    Search
   },
   data() {
     return {
@@ -37,20 +37,13 @@ export default {
   methods: {
     fetchContractList() {
       this.$http
-        .getContractList()
+        .getLogsList()
         .then((response) => {
           this.contract_list = response.files; // Extract the 'files' array from the response
         })
         .catch((error) => {
           console.error("Failed to fetch contract list:", error);
         });
-    },
-    editContract(fileName) {
-      console.log('editContract called with fileName:', fileName); 
-      this.currentFileName = fileName;
-      // You'll need to fetch the file content here
-      this.currentFileContent = "The content of the file..."; // Replace with actual content
-      this.editorVisible = true;
     },
     deleteContract(contract) {
       console.log(contract);
@@ -65,6 +58,10 @@ export default {
           // Handle the error here
           console.error("Failed to delete contract:", error);
         });
+    },
+    checkContract(fileName) {
+      // Your check logic here
+      console.log(`Checked contract: ${fileName}`);
     },
   },
 };
@@ -107,14 +104,5 @@ export default {
 .file-actions {
   display: flex;
   align-items: center;
-}
-
-.editor-textarea {
-  width: 100%;
-  border: 1px solid #dcdfe6;
-  border-radius: 4px;
-  padding: 10px;
-  box-sizing: border-box;
-  font-family: monospace; /* Gives it a bit of a code editor feel */
 }
 </style>

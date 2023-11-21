@@ -2,7 +2,7 @@
   <div>
     <el-space direction="vertical" :size="20" style="width: 100%">
       <h1>安全工具检测</h1>
-      <h4>1. 上传合约</h4>
+      <h4>step1 上传合约</h4>
       <el-input
         v-model="contract_url"
         autocomplete="off"
@@ -22,29 +22,40 @@
         :on-success="handleSuccess"
         :on-error="handleError"
       >
-        <el-button type="primary"
+      <div class="center">
+        <el-button class="center" type="primary" 
           >上传合约<el-icon class="el-icon--right"><Upload /></el-icon
         ></el-button>
+      </div>
+       
         <template #tip>
           <div class="el-upload__tip">
             contract files with a size less than 500KB.
           </div>
         </template>
+     
       </el-upload>
       <div class="file-list-container">
         <div class="file" v-for="file in paginatedFiles" :key="file.name">
           {{ file }}
         </div>
-      </div>
 
+      </div>
+      
       <el-pagination
         :page-size="5"
         layout="prev, pager, next"
         :total="contract_list.length"
         @current-change="handlePageChange"
       ></el-pagination>
+    
     </el-space>
-    <h4>2. 选择合约所用工具</h4>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <h4>step2 选择合约所用工具</h4>
+    <br>
     <div class="select-button-container">
       <el-select v-model="selectedOption" :options="options" placeholder="工具">
         <el-option
@@ -67,12 +78,19 @@
       ></el-button>
     </div>
   </div>
+  <br>
+  <br>
+  <hr>
+  <br>
+  <br>
   <div class="description-container">
     <el-descriptions
       class="margin-top"
       title="检测结果"
       :column="3"
       :size="size"
+      :contentStyle="rowCenter" 
+      :labelStyle="rowCenter"
       border
     >
       <el-descriptions-item label="工具名称" width="10%">
@@ -129,6 +147,34 @@ export default {
           value: "solhint",
           label: "solhint",
         },
+        {
+          value: "confuzzius",
+          label: "confuzzius",
+        },
+        {
+          value: "security",
+          label: "security",
+        },
+        {
+          value: "osiris",
+          label: "osiris",
+        },
+        {
+          value: "honeybadger",
+          label: "honeybadger",
+        },
+        {
+          value: "wana_cpp",
+          label: "wana_cpp",
+        },
+        {
+          value: "wana_rust",
+          label: "wana_rust",
+        },
+        {
+          value: "evulhunter",
+          label: "evulhunter",
+        },
       ],
       message: "",
       detect_res: "",
@@ -138,6 +184,9 @@ export default {
       execution_time: "",
     };
   },
+  rowCenter:{
+                    "text-align":"center"
+        },
   computed: {
     paginatedFiles() {
       const start = (this.currentPage - 1) * 5;
@@ -251,8 +300,13 @@ export default {
   width: 300px;
   height: auto;
   overflow: auto;
+  margin-left:500px;
+  text-align: left;
 }
-
+.file
+{
+  text-align:left;
+}
 .description-container {
   max-width: 100%;
   overflow-x: auto;
@@ -262,4 +316,60 @@ export default {
   white-space: nowrap; /* Keep text on a single line */
   overflow-x: auto; /* Add scroll bar if necessary */
 }
+
+::v-deep .el-descriptions-title
+{
+  text-align:center;
+}
+.center
+{
+  text-align:center;
+  margin-left:290px;
+}
+
+h4{
+  text-align:center
+}
+h1
+{
+  text-align:center
+}
+hr {
+    display: block;
+    height: 0.5px;
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-top: solid 0.5px #f0f0f0;
+}
+el-descriptions
+{
+  text-align:center
+}
+.select-button-container
+{
+  text-align:center
+}
+
+.load{
+  text-align:center
+}
+.el-upload__tip
+{
+  text-align:center
+}
+.file-list-container
+{
+  text-align:center
+}
+.description-container
+{
+  text-align:center
+}
+.el-descriptions_title
+{
+  text-align:center;
+}
+
+
 </style>

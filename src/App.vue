@@ -10,99 +10,74 @@
         </div>
       </el-header>
       <el-container>
-        <el-aside width="200px" class="aside">
-          <el-row class="menu-row">
-            <el-col :span="24">
-              <el-menu
-                default-active="defaultIndex"
-                background-color="#545c64"
-                active-text-color="#fff"
-                text-color="#ddd"
-                :router="true"
+        <div class="sidebar">
+          <el-button
+            class="collapse-toggle-button"
+            type="primary"
+            @click="toggleCollapse"
+          >
+            <el-icon class="el-icon--left"><Grid /></el-icon>
+          </el-button>
+          <el-menu
+            default-active="defaultIndex"
+            class="el-menu-vertical-demo"
+            :router="true"
+            :collapse="isCollapse"
+            @open="handleOpen"
+            @close="handleClose"
+          >
+            <el-sub-menu index="0">
+              <template #title>
+                <el-icon><Document /></el-icon>
+                <span>详情介绍</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item index="0-1" :route="{ name: 'search' }"
+                  >项目介绍</el-menu-item
+                >
+                <el-menu-item index="0-2" :route="{ name: 'language' }"
+                  >合约介绍</el-menu-item
+                >
+              </el-menu-item-group>
+              <el-menu-item index="0-3" :route="{ name: 'banner' }"
+                >工具介绍</el-menu-item
               >
-                <el-menu-item index="0" :route="{ name: 'search' }">
-                  <template #title>
-                    <el-icon><Search /></el-icon>
-                    <span>详情介绍</span>
-                  </template>
-                </el-menu-item>
-
-                <!-- <el-menu-item index="9" :route="{name: 'language'}" v-if="has_permission('language ')"> -->
-                <el-menu-item index="1" :route="{ name: 'language' }">
-                  <template #title>
-                    <el-icon><PictureRounded /></el-icon>
-                    <span>合约语言介绍</span>
-                  </template>
-                </el-menu-item>
-
-                <!-- <el-menu-item index="2" :route="{name: 'banner'}" v-if="has_permission('banner ')"> -->
-                <el-menu-item index="2" :route="{ name: 'banner' }">
-                  <template #title>
-                    <el-icon><PictureRounded /></el-icon>
-                    <span>工具介绍</span>
-                  </template>
-                </el-menu-item>
-
-                <el-menu-item
-                  index="3"
-                  :route="{ name: 'post' }"
-                  v-if="has_permission('post')"
+              <el-sub-menu index="0-4">
+                <template #title><span>item four</span></template>
+                <el-menu-item index="0-4-1">item one</el-menu-item>
+              </el-sub-menu>
+            </el-sub-menu>
+            <el-sub-menu index="1">
+              <template #title>
+                <el-icon><Comment /></el-icon>
+                <span>Dashboard</span>
+              </template>
+              <el-menu-item-group>
+                <el-menu-item index="1-1" :route="{ name: 'scTool' }"
+                  >合约分析</el-menu-item
                 >
-                  <template #title>
-                    <el-icon><Postcard /></el-icon>
-                    <span>帖子管理</span>
-                  </template>
-                </el-menu-item>
-
-                <el-menu-item
-                  index="4"
-                  :route="{ name: 'comment' }"
-                  v-if="has_permission('comment')"
+                <el-menu-item index="1-2" :route="{ name: 'contractManage' }"
+                  >合约管理</el-menu-item
                 >
-                  <template #title>
-                    <el-icon><Comment /></el-icon>
-                    <span>评论管理</span>
-                  </template>
-                </el-menu-item>
-
-                <el-menu-item
-                  index="5"
-                  :route="{ name: 'user' }"
-                  v-if="has_permission('user')"
+                <el-menu-item index="1-3" :route="{ name: 'record' }"
+                  >日志管理</el-menu-item
                 >
-                  <template #title>
-                    <el-icon><User /></el-icon>
-                    <span>用户管理</span>
-                  </template>
-                </el-menu-item>
-                <el-menu-item index="6" :route="{ name: 'scTool' }">
-                  <template #title>
-                    <el-icon><User /></el-icon>
-                    <span>合约分析</span>
-                  </template>
-                </el-menu-item>
-                <el-menu-item index="7" :route="{ name: 'contractManage' }">
-                  <template #title>
-                    <el-icon><User /></el-icon>
-                    <span>合约管理</span>
-                  </template>
-                </el-menu-item>
-                <el-menu-item index="8" :route="{ name: 'record' }">
-                  <template #title>
-                    <el-icon><User /></el-icon>
-                    <span>日志管理</span>
-                  </template>
-                </el-menu-item>
-                <el-menu-item index="9" :route="{ name: 'ide' }">
-                  <template #title>
-                    <el-icon><User /></el-icon>
-                    <span>IDE</span>
-                  </template>
-                </el-menu-item>
-              </el-menu>
-            </el-col>
-          </el-row>
-        </el-aside>
+              </el-menu-item-group>
+            </el-sub-menu>
+            <el-menu-item index="2" :route="{ name: 'ide' }">
+              <template #title>
+                <el-icon><User /></el-icon>
+                <span>IDE</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="3" >
+              <template #title>
+                <el-icon><Setting /></el-icon>
+                <span>设置</span>
+              </template>
+            </el-menu-item>
+          </el-menu>
+        </div>
         <el-container>
           <el-main class="main">
             <router-view></router-view>
@@ -116,23 +91,29 @@
 
 <script>
 import {
-  PictureRounded,
-  Postcard,
   Comment,
   User,
-  Search,
+  // Search,
+  Grid,
+  Document,
+  // Location,
+  Setting,
 } from "@element-plus/icons";
 export default {
   name: "App",
   components: {
-    PictureRounded,
-    Postcard,
     Comment,
     User,
-    Search,
+    // Search,
+    Grid,
+    Document,
+    // Location,
+    Setting,
   },
   data() {
-    return {};
+    return {
+      isCollapse: false,
+    };
   },
   computed: {
     defaultIndex() {
@@ -165,6 +146,17 @@ export default {
       console.log(permissions);
       console.log(this.$auth.user);
       return false;
+    },
+    toggleCollapse() {
+      this.isCollapse = !this.isCollapse; // Toggle the collapse state
+    },
+    handleOpen(key, keyPath) {
+      console.log("Menu opened:", key, keyPath);
+      // Handle menu open logic here
+    },
+    handleClose(key, keyPath) {
+      console.log("Menu closed:", key, keyPath);
+      // Handle menu close logic here
     },
   },
 };
@@ -213,6 +205,19 @@ export default {
 
 .footer {
   background: gray;
+}
+
+.collapse-toggle-button {
+  width: 40px;
+  height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>
 

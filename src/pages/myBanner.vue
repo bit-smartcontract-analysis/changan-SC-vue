@@ -9,7 +9,7 @@
       </el-table-column>
       <el-table-column prop="bug" label="检测漏洞" width="120" align="left">
       </el-table-column>
-      <el-table-column prop="intro" label="详情介绍" width="400" align="left">
+      <el-table-column prop="intro" label="详情介绍" width="1400" align="left">
       </el-table-column>
     </el-table>
   </div>

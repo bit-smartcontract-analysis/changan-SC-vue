@@ -591,7 +591,7 @@ el-descriptions
     text-align: center; /* 文字横向居中 */
     white-space: nowrap; /* 文字不换行 */
     overflow: hidden; /* 多余的文字内容隐藏 */
-    animation: borders 0.7s infinite normal,
+    animation: borders 0.1s infinite normal,
     widths 2s steps(13); /* 重点 steps() */
 }
    /* 边框闪烁动画 模拟指针闪烁 */

@@ -10,6 +10,7 @@ import AppContractManage from "@/pages/ContractManage.vue";
 import AppIde from "@/pages/IDECompile.vue";
 import AppLanguage from "@/pages/myLanguage.vue";
 import AppTool from "@/pages/newTool.vue";
+import AppIntro from "@/pages/itemIntro.vue";
 
 const routes = [{
     path: "/", component: AppSearch, name: "search"
@@ -37,6 +38,8 @@ const routes = [{
 },
 {
     path: "/tool", component: AppTool, name: "tool"
+},{
+    path: "/intro", component: AppIntro, name: "intro"
 }
 ]
 

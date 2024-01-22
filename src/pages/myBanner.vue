@@ -83,16 +83,16 @@ export default {
           intro: "WANA是一款基于符号执行技术的智能合约漏洞检测工具，可以探索智能合约的程序执行分支，并在探索过程中寻找智能合约是否存在安全漏洞",
         },
         {
+          name: "evulhunter",
+          language: "C++",
+          bug: "Fake EOS Transfer漏洞",
+          intro: "EVulHunter是基于Octopus项目的EOS智能合约二进制级漏洞检测器",
+        },
+        {
           name: "wana_rust",
           language: "Rust",
           bug: "块信息依赖漏洞、资产无限期冻结漏洞、委托调用漏洞、Block Information Dependency漏洞等",
           intro: "WANA是一款基于符号执行技术的智能合约漏洞检测工具，可以探索智能合约的程序执行分支，并在探索过程中寻找智能合约是否存在安全漏洞",
-        },
-        {
-          name: "evulhunter",
-          language: "Rust",
-          bug: "Fake EOS Transfer漏洞",
-          intro: "EVulHunter是基于Octopus项目的EOS智能合约二进制级漏洞检测器",
         },
         {
           name: "chaincode-analyzer",

@@ -122,11 +122,11 @@ export default {
       currentPage: 1,
       uploadError: "",
       contract_url: "",
-      selectedOption: null, // Add this li
+      selectedOption: "", // Add this li
       options: [
         {
           value: "mythril",
-          label: "Mythril",
+          label: "All",
         },
         {
           value: "oyente",

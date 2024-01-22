@@ -5,7 +5,7 @@
         <a href="/" class="brand"><strong>长安链</strong>合约检测平台</a>
         <div class="header-content">
           <!-- <div class="greet">欢迎，{{$auth.user.username}}[{{$auth.user.role.name}}]</div> -->
-          <div class="greet">欢迎，张同学</div>
+          <div class="greet">欢迎</div>
           <div class="signout" href="/">回到首页</div>
         </div>
       </el-header>

@@ -7,7 +7,7 @@
       </el-table-column>
       <el-table-column prop="language" label="合约语言" width="120" align="left">
       </el-table-column>
-      <el-table-column prop="bug" label="检测漏洞" width="120" align="left">
+      <el-table-column prop="bug" label="检测漏洞" width="200" align="left">
       </el-table-column>
       <el-table-column prop="intro" label="详情介绍" width="1400" align="left">
       </el-table-column>
@@ -37,7 +37,7 @@ export default {
         {
           name: "Conkas",
           language: "solidity",
-          bug: "*************",
+          bug: "重入攻击，整数溢出，时间戳依赖",
           intro: "一种以太坊字节码的模块化和静态分析工具",
         },
         {
@@ -61,19 +61,19 @@ export default {
         {
           name: "security",
           language: "solidity",
-          bug: "*************",
+          bug: "重入漏洞",
           intro: "一个检测solidity智能合约漏洞的工具",
         },
         {
           name: "osiris",
           language: "solidity",
-          bug: "重入漏洞、溢出漏洞、未初始化变量、函数可见性错误、Gas 空洞",
+          bug: "重入漏洞、整数溢出、未初始化变量、函数可见性错误、Gas 空洞",
           intro: "Osiris 是一种智能合约安全工具，它是用于以太坊区块链上的 Solidity 智能合约的漏洞扫描器",
         },
         {
           name: "honeybadger",
           language: "solidity",
-          bug: "*************",
+          bug: "不安全的自杀函数",
           intro: "一个检测solidity智能合约漏洞的工具",
         },
         {

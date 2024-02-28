@@ -26,5 +26,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## 与Flask集成
 https://cli.vuejs.org/zh/config/
 
-生成flask使用文件
+生成flask使用文件生成网页
+delopyment模式
 npm run build -- --mode development
+production模式
+npm run build
+

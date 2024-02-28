@@ -22,7 +22,7 @@
         <br />
         <div class="box_a">
           <h4><a href="https://chainmaker.org.cn/home">长安链官网</a></h4>
-          <em>|</em><span><a href="myOpen.html">合约检测</a></span>
+          <em>|</em><span><a href="http://180.76.173.179/cms#/tool">合约检测</a></span>
         </div>
       </div>
     </div>

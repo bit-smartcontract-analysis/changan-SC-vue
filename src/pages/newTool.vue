@@ -427,8 +427,21 @@ el-descriptions {
   margin-left: -20px;
   background-color: #8fbc8f;
 }
+.mybutton1:hover {
+    
+    transition:0.7s;
+    filter: brightness(1.25);
+
+}
+
 .mybutton2 {
   background-color: #8fbc8f;
+}
+.mybutton2:hover {
+    
+    transition:0.7s;
+    filter: brightness(1.25);
+
 }
 .card .content {
   display: flex;

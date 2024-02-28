@@ -1,4 +1,30 @@
 <template>
+  <div>
+    <select v-model="selectedLanguage">
+      <option value="sol">Solidity</option>
+      <option value="javascript">JavaScript</option>
+      <option value="python">Python</option>
+      <option value="html">HTML</option>
+      <!-- Add more languages as needed -->
+    </select>
+    <select v-model="themeColor">
+      <option value="vs-dark">Dark</option>
+      <option value="vs-light">Light</option>
+      <option value="hc-black">Black</option>
+    </select>
+    <div style="margin: 10px 0"></div>
+    <MonacoEditor
+    class="editor"
+    :language="selectedLanguage"
+    :theme="themeColor"
+    :options="editorOptions"
+    v-model="code"
+    @editorDidMount="editorDidMount"
+    ></MonacoEditor>
+    <div style="margin: 10px 0"></div>
+    <el-button type="primary" circle @click="handleSubmit"><el-icon><UploadFilled /></el-icon>
+    </el-button>Submit Code 
+  </div>
   <div class="container">
     <div class="file-list" v-for="file in contract_list" :key="file.name">
       <div class="file-info">
@@ -16,19 +42,28 @@
     </div>
   </div>
 </template>
-
+UploadFilled
 
 <script>
-import { Delete, Search} from "@element-plus/icons";
+import { Delete, Search, UploadFilled} from "@element-plus/icons";
+import MonacoEditor from "vue-monaco";
+import {h} from "vue";
+MonacoEditor.render = () => h("div");
+
 export default {
-  name: "AppContractManage",
+  name: "AppRecord",
   components: {
     Delete,
-    Search
+    Search,
+    UploadFilled,
+    MonacoEditor
   },
   data() {
     return {
       contract_list: [],
+      code: '//write your code here',
+      selectedLanguage: 'sol',
+      themeColor: 'vs-dark',
     };
   },
   mounted() {
@@ -63,6 +98,17 @@ export default {
       // Your check logic here
       console.log(`Checked contract: ${fileName}`);
     },
+    editorDidMount(editor) {
+      // Listen to `scroll` event
+      editor.onDidScrollChange(e => {
+        console.log(e)
+      })
+    },
+    handleSubmit() {
+      // Here, 'this.code' contains the current value from the editor
+      console.log('Submitted code:', this.code);
+      // Call your function here and pass 'this.code'
+    }
   },
 };
 </script>
@@ -104,5 +150,9 @@ export default {
 .file-actions {
   display: flex;
   align-items: center;
+}
+.editor{
+  height: 500px;
+  border: 1px solid black;
 }
 </style>
